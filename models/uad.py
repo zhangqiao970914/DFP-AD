@@ -36,21 +36,6 @@ class DFP_AD(nn.Module):
         if not hasattr(self.encoder, 'num_register_tokens'):
             self.encoder.num_register_tokens = 0
 
-    def gather_loss(self, query, keys):
-        self.distribution = 1. - F.cosine_similarity(query.unsqueeze(2), keys.unsqueeze(1), dim=-1)
-        self.distance, self.cluster_index = torch.min(self.distribution, dim=2)
-        gather_loss = self.distance.mean()
-        return gather_loss
-
-    def soft_coherence_loss(self, query, keys):
-        B, N, D = query.size()
-        cosine_similarity_matrix = F.cosine_similarity(query.unsqueeze(2), keys.unsqueeze(1), dim=-1)
-        norm_weight = F.softmax(cosine_similarity_matrix, dim=-1)
-        reweight_keys = torch.bmm(norm_weight, keys)
-        self.distribution = 1. - F.cosine_similarity(query.view(B, -1), reweight_keys.view(B, -1), dim=-1)
-        soft_coherence_loss = self.distribution.mean()
-        return soft_coherence_loss
-
     def correlation_coherence_loss(self, query, keys, eps=1e-6):
 
         B, N, C = query.shape
@@ -94,13 +79,13 @@ class DFP_AD(nn.Module):
         agg_prototype_low = self.prototype_token1  
         for i, blk in enumerate(self.aggregation):
             agg_prototype_low = blk(agg_prototype_low.unsqueeze(0).repeat((B, 1, 1)), x_low)  
-        g_loss_low = self.soft_coherence_loss(x_low, agg_prototype_low)  # Low frquency correlation coherence loss
+        g_loss_low = self.correlation_coherence_loss(x_low, agg_prototype_low)  # Low frquency correlation coherence loss
 
         ### HF-Prototype Learning ###
         agg_prototype_high = self.prototype_token2  
         for i, blk in enumerate(self.aggregation):
             agg_prototype_high = blk(agg_prototype_high.unsqueeze(0).repeat((B, 1, 1)), x_high)  
-        g_loss_high = self.soft_coherence_loss(x_high, agg_prototype_high)  # High frquency correlation coherence loss
+        g_loss_high = self.correlation_coherence_loss(x_high, agg_prototype_high)  # High frquency correlation coherence loss
 
         g_loss = 0.2 * g_loss_low + 0.2 * g_loss_high
 
