@@ -21,3 +21,26 @@ Test
 ```bash
 python DFP-AD_Multi_Class.py --dataset datasets --data_path .../datsest --phase test
 ```
+
+# Few-Shot Setting Train/Test
+
+Train
+```bash
+python DFP-AD_Few_Shot.py --dataset datasets --data_path .../datsest --shot shot_number --phase train
+```
+
+Test
+```bash
+python DFP-AD_Few_Shot.py --dataset datasets --data_path .../datsest --shot shot_number --phase test
+```
+# Single-Class Setting Train/Test
+
+Train
+```bash
+python DFP-AD_Single_Class.py --dataset datasets --data_path .../datsest --phase train
+```
+
+Test
+```bash
+python DFP-AD_Single_Class.py --dataset datasets --data_path .../datsest --phase test
+```
