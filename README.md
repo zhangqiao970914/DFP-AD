@@ -48,4 +48,4 @@ python DFP-AD_Single_Class.py --dataset datasets --data_path .../datsest --phase
 We provide weights for testing, which you can download from here.
 
 # Acknowledgment
-We sincerely thank the authors of [INP-Former](https://github.com/luow23/INP-Former) and [Dinomaly](https://github.com/guojiajeremy/Dinomaly) for releasing their code, which provided valuable references for this work.
+This project benefits from the publicly available implementations of [INP-Former](https://github.com/luow23/INP-Former) and [Dinomaly](https://github.com/guojiajeremy/Dinomaly). We sincerely thank the authors for their valuable contributions to the community.
