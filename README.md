@@ -9,3 +9,10 @@ conda create -n DFP-AD python=3.8.12
 conda activate DFP-AD
 pip install -r requirements.txt
 ```
+
+# Multi-Class Setting Train/Test
+
+Train
+```bash
+python DFP-AD_Multi_Class.py --dataset datasets --data_path .../datsest --phase train
+```
