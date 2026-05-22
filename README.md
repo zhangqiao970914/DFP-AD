@@ -16,3 +16,8 @@ Train
 ```bash
 python DFP-AD_Multi_Class.py --dataset datasets --data_path .../datsest --phase train
 ```
+
+Test
+```bash
+python DFP-AD_Multi_Class.py --dataset datasets --data_path .../datsest --phase test
+```
