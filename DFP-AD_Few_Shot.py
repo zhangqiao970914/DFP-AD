@@ -316,7 +316,7 @@ if __name__ == '__main__':
 
     # training info
     parser.add_argument('--total_epochs', type=int, default=100)
-    parser.add_argument('--batch_size', type=int, default=16)
+    parser.add_argument('--batch_size', type=int, default=16)  #4-shot:16  2-shot:8  1-shot: 4
     parser.add_argument('--shot', type=int, default=4) # Number of samples
     parser.add_argument('--phase', type=str, default='train')
 
