@@ -184,7 +184,7 @@ if __name__ == '__main__':
     parser.add_argument('--INP_num', type=int, default=6)
 
     # training info
-    parser.add_argument('--total_epochs', type=int, default=100)
+    parser.add_argument('--total_epochs', type=int, default=40)
     parser.add_argument('--batch_size', type=int, default=16)
     parser.add_argument('--phase', type=str, default='train')
 
